@@ -30,7 +30,7 @@
       <label class="col-sm-2 col-form-label">Precio</label>
 
       <div class="col-sm-10">
-        <input id="precio" type="text" class="form-control" precio="precio" />
+        <input id="precio" type="text" class="form-control" name="precio" />
       </div>
     </div>
 
@@ -93,14 +93,15 @@
   }
 
   function edit() {
-    let nombre = $('#nombreModal').val()
-    let precio = $('#precioModal').val()
-    axios.get(`/editar?nombre=${nombre}&precio=${precio}`).then((data) => {
-      alert(data.data)
-      getData()
-    })
-    $('#exampleModal').modal('hide')
-  }
+  let nombre = $('#nombreModal').val();
+  let nuevoNombre = $('#nombreModal').val();
+  let nuevoPrecio = $('#precioModal').val();
+  axios.get(`/editar?nombre=${nombre}&nuevoNombre=${nuevoNombre}&nuevoPrecio=${nuevoPrecio}`).then((data) => {
+    alert(data.data);
+    getData();
+  });
+  $('#exampleModal').modal('hide');
+}
 
   function eliminar(nombre) {
     axios.get(`/eliminar?nombre=${nombre}`).then((data) => {
