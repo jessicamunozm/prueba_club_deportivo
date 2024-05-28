@@ -39,16 +39,15 @@ routes.get('/eliminar', (req, res) => {
 
 //ruta para editar
 routes.get('/editar', (req, res) => {
-    const { nombre, nuevoNombre, nuevoPrecio } = req.query;
-    const dataSports = fs.readFileSync("./assets/data/data.json");
-    let { deportes } = JSON.parse(dataSports);
-    const deporteIndex = deportes.findIndex(deporte => deporte.nombre === nombre);
-    // Actualizar el deporte
-    deportes[deporteIndex].nombre = nuevoNombre;
-    deportes[deporteIndex].precio = nuevoPrecio;
+    const { nombre, nuevoNombre, nuevoPrecio } = req.query
+    const dataSports = fs.readFileSync("./assets/data/data.json")
+    let { deportes } = JSON.parse(dataSports)
+    const deporteIndex = deportes.findIndex(deporte => deporte.nombre === nombre)
+    deportes[deporteIndex].nombre = nuevoNombre
+    deportes[deporteIndex].precio = nuevoPrecio
 
-    fs.writeFileSync("./assets/data/data.json", JSON.stringify({ deportes }, null, 2));
-    res.send('editado con éxito');
-});
+    fs.writeFileSync("./assets/data/data.json", JSON.stringify({ deportes }, null, 2))
+    res.send('editado con éxito')
+})
 
 export default routes   
